@@ -400,6 +400,11 @@ main {
   margin-top: 1.5rem;
 }
 
+.project-link {
+  width: fit-content;
+  margin-top: 1.25rem;
+}
+
 .contact-card a {
   display: inline-flex;
   color: var(--accent);
@@ -410,12 +415,20 @@ main {
 
 .contact-form-card {
   grid-column: 1 / -1;
+  padding: 2rem;
+  width: 100%;
+  max-width: 100%;
+  min-height: 520px;
+}
+
+body.contact-page .contact-layout {
+  grid-template-columns: 1fr;
 }
 
 .form-grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
 }
 
 .form-full {
@@ -424,7 +437,7 @@ main {
 
 .form-group {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.75rem;
   color: #d7e4fb;
 }
 
@@ -436,8 +449,9 @@ main {
   border-radius: 16px;
   background: rgba(6, 16, 30, 0.72);
   color: #f6fbff;
-  padding: 0.9rem 1rem;
+  padding: 1.25rem 1.35rem;
   font: inherit;
+  font-size: 1.12rem;
 }
 
 .form-group input:focus,
@@ -448,11 +462,13 @@ main {
 
 .form-group textarea {
   resize: vertical;
-  min-height: 8rem;
+  min-height: 12rem;
 }
 
 .contact-form-card .button {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
+  padding: 1rem 1.3rem;
+  font-size: 1.1rem;
 }
 
 .item {
@@ -488,7 +504,10 @@ footer {
 
 footer p {
   margin: 0;
-  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.9rem 1.1rem;
   border: 1px solid var(--border);
   border-radius: 18px;
   background: rgba(6, 16, 30, 0.72);
@@ -499,6 +518,7 @@ footer a {
   color: var(--accent);
   font-weight: 700;
 }
+
 
 @media (max-width: 900px) {
   .hero,
