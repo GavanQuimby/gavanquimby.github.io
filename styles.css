@@ -318,8 +318,28 @@ main {
   padding: 1.25rem;
   border-radius: 22px;
   border: 1px solid rgba(127, 176, 255, 0.14);
-  background: rgba(9, 21, 44, 0.86);
-  color: #f1f7ff;
+
+.linkedin-embed iframe {
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .linkedin-posts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .linkedin-posts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.page-hero {
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
