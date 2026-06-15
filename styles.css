@@ -154,6 +154,11 @@ main {
   text-transform: uppercase;
 }
 
+.home-eyebrow {
+  font-size: 50px;
+  line-height: 1;
+}
+
 .lead {
   max-width: 66ch;
   margin: 1rem 0 0;
@@ -284,6 +289,60 @@ main {
   align-items: start;
 }
 
+body.portfolio-page main,
+body.portfolio-page footer,
+body.portfolio-page .site-header {
+  width: min(1320px, 96%);
+}
+
+body.portfolio-page .project-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.experience-page main,
+body.experience-page footer,
+body.experience-page .site-header {
+  width: min(1240px, 94%);
+}
+
+.experience-list {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.experience-card {
+  padding: 2.25rem;
+}
+
+.experience-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.experience-heading h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.05;
+}
+
+.experience-heading .eyebrow {
+  margin-bottom: 0.65rem;
+}
+
+.experience-date {
+  flex: 0 0 auto;
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.experience-card li {
+  font-size: 1.2rem;
+}
+
 .highlight-card {
   min-height: 170px;
 }
@@ -318,6 +377,7 @@ main {
   padding: 1.25rem;
   border-radius: 22px;
   border: 1px solid rgba(127, 176, 255, 0.14);
+}
 
 .linkedin-embed iframe {
   width: 100%;
@@ -394,6 +454,20 @@ main {
   color: var(--accent);
   font-size: 0.82rem;
   font-weight: 800;
+  text-decoration: none;
+}
+
+.purple-label {
+  margin: 0.85rem 0 1rem;
+  border-color: rgba(196, 132, 252, 0.55);
+  background: rgba(147, 51, 234, 0.28);
+  color: #f0dcff;
+}
+
+.purple-label:hover,
+.purple-label:focus-visible {
+  background: rgba(168, 85, 247, 0.42);
+  border-color: rgba(216, 180, 254, 0.8);
 }
 
 .project-card h2 {
@@ -405,6 +479,14 @@ main {
   margin-top: 1.25rem;
 }
 
+.project-card h2 {
+  font-size: 2.35rem;
+}
+
+.project-card p {
+  font-size: 1.45rem;
+}
+
 .contact-card a {
   display: inline-flex;
   color: var(--accent);
@@ -413,22 +495,56 @@ main {
   overflow-wrap: anywhere;
 }
 
+.contact-info-card {
+  width: min(100%, 1180px);
+  justify-self: center;
+}
+
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.contact-info-grid > div {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(143, 179, 255, 0.12);
+}
+
+.contact-info-grid h3 {
+  font-size: 50px;
+  line-height: 1;
+}
+
+.contact-info-grid a,
+.contact-info-grid p {
+  font-size: 1.45rem;
+  line-height: 1.35;
+}
+
 .contact-form-card {
   grid-column: 1 / -1;
-  padding: 2rem;
-  width: 100%;
-  max-width: 100%;
-  min-height: 520px;
+  justify-self: center;
+  width: min(100%, 1180px);
+  min-height: 680px;
+  padding: 3rem;
 }
 
 body.contact-page .contact-layout {
   grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+body.contact-page main,
+body.contact-page footer,
+body.contact-page .site-header {
+  width: min(1320px, 96%);
 }
 
 .form-grid {
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .form-full {
@@ -439,6 +555,11 @@ body.contact-page .contact-layout {
   display: grid;
   gap: 0.75rem;
   color: #d7e4fb;
+}
+
+.form-group span {
+  font-size: 50px;
+  line-height: 1;
 }
 
 .form-group input,
@@ -462,7 +583,7 @@ body.contact-page .contact-layout {
 
 .form-group textarea {
   resize: vertical;
-  min-height: 12rem;
+  min-height: 24rem;
 }
 
 .contact-form-card .button {
@@ -574,6 +695,18 @@ footer a {
   .intro-grid,
   .project-grid,
   .contact-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-heading {
+    flex-direction: column;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
     grid-template-columns: 1fr;
   }
 

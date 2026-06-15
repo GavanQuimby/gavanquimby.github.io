@@ -7,13 +7,14 @@
   <meta name="description" content="Portfolio projects by Gavan Quimby.">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="portfolio-page">
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
       <a class="brand" href="index.html">Gavan Quimby</a>
       <div class="nav-links">
         <a href="index.html">Home</a>
         <a class="active" href="portfolio.html">Portfolio</a>
+        <a href="experience.html">Experience</a>
         <a href="leadership.html">Leadership</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
@@ -32,6 +33,11 @@
     </section>
 
     <section class="project-grid" aria-label="Portfolio placeholders">
+      <article class="card project-card resume-card">
+        <h2>Resume</h2>
+        <p>As of June 15, 2026</p>
+        <a class="button secondary project-link" href="documents/gavan-quimby-resume.pdf" target="_blank" rel="noopener">View PDF</a>
+      </article>
       <article class="card project-card">
         <span class="project-label">Policy Project</span>
         <h2>Mock Legal Documentation</h2>
@@ -47,14 +53,15 @@
         <p>Java, XML, and database work for a desktop-style weather application.</p>
       </article>
       <article class="card project-card">
-        <span class="project-label">Coming Soon</span>
         <h2>Streaming Service Database</h2>
-        <p>Team database design project using Microsoft Visio and Access.</p>
+        <p>Team database design project using Microsoft Visio and Access to update ERDs, hardware, software, and employees for the fictional company "Flix2You".</p>
+        <a class="button secondary project-link" href="documents/flix2you-database-project.pdf" target="_blank" rel="noopener">View PDF</a>
       </article>
       <article class="card project-card">
-        <span class="project-label">Coming Soon</span>
-        <h2>Resume Website</h2>
-        <p>A personal website project built with HTML and CSS.</p>
+        <h2>Dual Platform Advertiser Approval System</h2>
+        <a class="project-label purple-label" href="https://sylfserve.webflow.io/" target="_blank" rel="noopener">SYLF Website</a>
+        <p>Worked with an automated alcoholic beverage dispenser company to help manage digital advertising content displayed on different dispensers.</p>
+        <a class="button secondary project-link" href="documents/dual-platform-advertiser-approval-system.pdf" target="_blank" rel="noopener">View PDF</a>
       </article>
     </section>
   </main>
