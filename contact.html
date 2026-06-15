@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gavan Quimby | Contact</title>
+  <meta name="description" content="Contact Gavan Quimby.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="index.html">Gavan Quimby</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="about.html">About</a>
+        <a class="active" href="contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Contact</p>
+      <h1>Let's Connect</h1>
+      <p class="lead">
+        Reach out for project collaboration, IT opportunities, cybersecurity work, or professional references.
+      </p>
+    </section>
+
+    <section class="contact-layout">
+      <article class="card contact-card">
+        <h2>Email</h2>
+        <a href="mailto:gavanquimby@gmail.com">gavanquimby@gmail.com</a>
+      </article>
+      <article class="card contact-card">
+        <h2>Phone</h2>
+        <a href="tel:+14848948364">(484) 894-8364</a>
+      </article>
+      <article class="card contact-card">
+        <h2>Location</h2>
+        <p>Pocono Lake, Pennsylvania</p>
+      </article>
+    </section>
+
+    <section class="contact-layout">
+      <article class="card contact-card contact-form-card">
+        <h2>Send a message</h2>
+        <form id="contact-form">
+          <div class="form-grid">
+            <label class="form-group">
+              <span>First Name</span>
+              <input type="text" name="firstName" required placeholder="First name">
+            </label>
+            <label class="form-group">
+              <span>Last Name</span>
+              <input type="text" name="lastName" required placeholder="Last name">
+            </label>
+            <label class="form-group form-full">
+              <span>Email</span>
+              <input type="email" name="email" required placeholder="you@example.com">
+            </label>
+            <label class="form-group form-full">
+              <span>Subject</span>
+              <input type="text" name="subject" required placeholder="Subject">
+            </label>
+            <label class="form-group form-full">
+              <span>Message</span>
+              <textarea name="message" rows="6" required placeholder="Write your message"></textarea>
+            </label>
+          </div>
+          <button type="submit" class="button primary">Email me</button>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>Gavan Quimby | <a href="mailto:gavanquimby@gmail.com">gavanquimby@gmail.com</a></p>
+  </footer>
+
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const formData = new FormData(contactForm);
+        const firstName = String(formData.get('firstName') || '').trim();
+        const lastName = String(formData.get('lastName') || '').trim();
+        const senderEmail = String(formData.get('email') || '').trim();
+        const subject = String(formData.get('subject') || 'Contact request').trim();
+        const message = String(formData.get('message') || '').trim();
+        const body = encodeURIComponent([
+          `Name: ${firstName} ${lastName}`.trim(),
+          `Email: ${senderEmail}`,
+          '',
+          message,
+        ].join('\n'));
+        window.location.href = `mailto:gavanquimby@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      });
+    }
+  </script>
+</body>
+</html>
