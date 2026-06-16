@@ -51,7 +51,7 @@
       </article>
       <article class="card contact-card contact-form-card">
         <h2>Send a message</h2>
-        <form id="contact-form">
+        <form id="contact-form" action="mailto:gavanquimby@gmail.com" method="post" enctype="text/plain">
           <div class="form-grid">
             <label class="form-group first-name-group">
               <span>First Name</span>
@@ -75,6 +75,7 @@
             </label>
           </div>
           <button type="submit" class="button primary">Email me</button>
+          <p class="form-status" id="contact-form-status" aria-live="polite"></p>
         </form>
       </article>
     </section>
@@ -86,22 +87,42 @@
 
   <script>
     const contactForm = document.getElementById('contact-form');
+    const contactFormStatus = document.getElementById('contact-form-status');
+
     if (contactForm) {
       contactForm.addEventListener('submit', function (event) {
         event.preventDefault();
+
+        if (!contactForm.reportValidity()) {
+          return;
+        }
+
         const formData = new FormData(contactForm);
         const firstName = String(formData.get('firstName') || '').trim();
         const lastName = String(formData.get('lastName') || '').trim();
         const senderEmail = String(formData.get('email') || '').trim();
-        const subject = String(formData.get('subject') || 'Contact request').trim();
+        const subject = String(formData.get('subject') || '').trim();
         const message = String(formData.get('message') || '').trim();
-        const body = encodeURIComponent([
+
+        if (!subject || !message) {
+          contactFormStatus.textContent = 'Please add a subject and message before sending.';
+          return;
+        }
+
+        const bodyLines = [
           `Name: ${firstName} ${lastName}`.trim(),
           `Email: ${senderEmail}`,
           '',
           message,
-        ].join('\n'));
-        window.location.href = `mailto:gavanquimby@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        ];
+        const body = bodyLines.join('\n');
+        const encodedSubject = encodeURIComponent(subject);
+        const encodedBody = encodeURIComponent(body);
+        const mailtoUrl = `mailto:gavanquimby@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=gavanquimby@gmail.com&su=${encodedSubject}&body=${encodedBody}`;
+
+        window.location.href = mailtoUrl;
+        contactFormStatus.innerHTML = `Your email draft is ready. If it did not open, <a href="${gmailUrl}" target="_blank" rel="noopener">open it in Gmail</a>.`;
       });
     }
   </script>

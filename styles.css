@@ -592,6 +592,17 @@ body.contact-page .site-header {
   font-size: 1.1rem;
 }
 
+.form-status {
+  min-height: 1.6rem;
+  margin: 0.85rem 0 0;
+  color: #d7e4fb;
+}
+
+.form-status a {
+  color: var(--accent);
+  font-weight: 800;
+}
+
 .item {
   position: relative;
 }
