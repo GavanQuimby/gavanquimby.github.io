@@ -4,180 +4,136 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Self-Hosted Backup Server | Gavan Quimby</title>
-  <meta name="description" content="How Gavan Quimby turned a 2016 Alienware desktop into a headless Ubuntu Server running Immich in Docker, secured behind a Tailscale VPN.">
-  <script>(function(){var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t)})()</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=2">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230f172a'/%3E%3Ctext x='16' y='21' font-family='monospace' font-size='13' font-weight='700' fill='white' text-anchor='middle'%3EGQ%3C/text%3E%3C/svg%3E">
+  <meta name="description" content="How Gavan Quimby turned a 2016 Alienware desktop into a headless Ubuntu Server running Immich in Docker, behind a Tailscale VPN.">
+  <meta name="theme-color" content="#f5f3ee">
+  <link rel="canonical" href="https://gavanquimby.github.io/homelab.html">
+  <meta property="og:title" content="Self-Hosted Backup Server | Gavan Quimby">
+  <meta property="og:description" content="How Gavan Quimby turned a 2016 Alienware desktop into a headless Ubuntu Server running Immich in Docker, behind a Tailscale VPN.">
+  <meta property="og:image" content="https://gavanquimby.github.io/og.jpg">
+  <meta property="og:url" content="https://gavanquimby.github.io/homelab.html">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="fonts/newsreader-latin-standard-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23191713'/%3E%3Ctext x='16' y='22.5' font-family='Georgia,serif' font-size='17' fill='%23f5f3ee' text-anchor='middle'%3EG%3C/text%3E%3Ccircle cx='24.5' cy='21' r='2.2' fill='%23c2410c'/%3E%3C/svg%3E">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
-    <nav class="container nav" aria-label="Main">
-      <a class="brand" href="index.html"><span class="brand-mark">GQ</span>Gavan Quimby</a>
-      <ul class="nav-links">
-        <li><a href="index.html#experience">Experience</a></li>
-        <li><a href="index.html#projects" class="active">Projects</a></li>
-        <li><a href="index.html#skills">Skills</a></li>
+    <nav class="wrap nav" aria-label="Main">
+      <a class="wordmark" href="index.html" aria-label="Gavan Quimby, home">Gavan Quimby<i aria-hidden="true"></i></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#work">Work</a></li>
+        <li><a href="index.html#projects">Projects</a></li>
         <li><a href="index.html#leadership">Leadership</a></li>
+        <li><a href="index.html#linkedin">LinkedIn</a></li>
         <li><a href="index.html#contact">Contact</a></li>
+        <li><a class="nav-cta" href="documents/gavan-quimby-resume.pdf" target="_blank" rel="noopener">Résumé</a></li>
       </ul>
-      <div class="nav-actions">
-        <button class="icon-btn theme-toggle" type="button" aria-label="Toggle dark mode">
-          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        </button>
-        <button class="icon-btn menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-      </div>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
     </nav>
   </header>
 
+
   <main id="main">
     <section class="page-hero">
-      <div class="container">
-        <a class="crumb" href="index.html#projects">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6 6-6-6 6-6"/></svg>
-          All projects
-        </a>
-        <p class="eyebrow" style="margin-top:24px">Home lab · Sep – Nov 2026</p>
-        <h1>Self-Hosted Backup Server</h1>
-        <p class="lead">
-          I didn't want my photos living only in someone else's cloud, so I turned an old 2016 Alienware desktop into a
-          headless Linux server that backs up my phone automatically. It's reachable from anywhere through a private
-          VPN, and nothing is exposed to the open internet.
-        </p>
-        <ul class="chip-list">
-          <li class="chip">Ubuntu Server 26.04 LTS</li><li class="chip">Docker Compose</li><li class="chip">Immich</li>
-          <li class="chip">PostgreSQL</li><li class="chip">Valkey</li><li class="chip">Tailscale</li><li class="chip">Netplan</li><li class="chip">SSH</li>
-        </ul>
+      <div class="wrap">
+        <a class="crumb" href="index.html#lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6 6-6-6 6-6"/></svg>Back to the portfolio</a>
+        <div data-enter>
+          <p class="meta">Home lab · Sep – Nov 2026</p>
+          <h1>A self-hosted <em>backup server</em></h1>
+          <p class="lede">I didn't want my photos living only in someone else's cloud, so I turned an old 2016 Alienware desktop into a headless Linux server that backs up my phone automatically. It's reachable from anywhere through a private VPN, and nothing is exposed to the open internet.</p>
+        </div>
+        <dl class="figures">
+          <div><dt>9,000+</dt><dd>photos backed up from iOS</dd></div>
+          <div><dt>4</dt><dd>Docker containers</dd></div>
+          <div><dt>26.04</dt><dd>Ubuntu Server LTS, headless</dd></div>
+          <div><dt>0</dt><dd>ports opened on the router</dd></div>
+        </dl>
       </div>
     </section>
 
-    <div class="container">
-      <div class="stats reveal">
-        <div class="stat"><strong>9,000+</strong><span>photos backed up from iOS</span></div>
-        <div class="stat"><strong>4</strong><span>Docker containers</span></div>
-        <div class="stat"><strong>26.04</strong><span>Ubuntu Server LTS, headless</span></div>
-        <div class="stat"><strong>2016</strong><span>desktop, repurposed as a server</span></div>
-      </div>
-    </div>
-
-    <section class="section">
-      <div class="container split">
-        <div class="prose reveal">
+    <section>
+      <div class="wrap lab">
+        <div class="lab-copy">
           <h2>The stack</h2>
-          <p>
-            The server runs headless, with no monitor or keyboard. I manage it entirely over SSH. Immich, an open-source
-            photo platform, runs as four containers defined in one Docker Compose file. That makes the whole thing
-            easy to rebuild or move to new hardware.
-          </p>
-          <p>
-            My phone talks to the server over Tailscale, a WireGuard-based VPN. Instead of forwarding ports on my
-            home router, only devices signed in to my private network can reach it.
-          </p>
+          <p style="margin-top:24px">The server runs headless, with no monitor or keyboard; I manage it entirely over SSH. Immich, an open-source photo platform, runs as four containers defined in one Docker Compose file, so the whole thing is easy to rebuild or move to new hardware.</p>
+          <p>My phone talks to the server over Tailscale, a WireGuard-based VPN. Instead of forwarding ports on my home router, only devices signed in to my private network can reach it.</p>
         </div>
-<pre class="arch reveal" aria-label="Server stack diagram"><span class="c"># host: alienware-2016 (headless)</span>
-<span class="c"># os:   ubuntu server 26.04 lts</span>
-
-<span class="b">iPhone</span>
+        <figure class="terminal" aria-label="Diagram of the server stack">
+          <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>alienware-2016 · ubuntu server 26.04</span></div>
+<pre><span class="o">iPhone</span>
   │  tailscale (wireguard)
   ▼
-<span class="g">immich-server</span>          <span class="c"># web + api</span>
+<span class="g">immich-server</span>            <span class="c"># web + api</span>
   ├── <span class="g">immich-machine-learning</span>
-  ├── <span class="g">postgres</span>           <span class="c"># metadata</span>
-  └── <span class="g">valkey</span>             <span class="c"># cache / jobs</span>
+  ├── <span class="g">postgres</span>             <span class="c"># metadata</span>
+  └── <span class="g">valkey</span>               <span class="c"># cache, jobs</span>
 
-<span class="c"># admin:</span> ssh over tailnet only</pre>
+<span class="c"># admin: ssh over the tailnet only</span></pre>
+        </figure>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
+    <section>
+      <div class="wrap">
         <div class="section-head">
-          <p class="eyebrow">// build log</p>
           <h2>How I built it</h2>
+          <p>Five steps, from BIOS settings to a locked-down remote connection.</p>
         </div>
         <ol class="steps">
-          <li class="card reveal">
-            <div>
-              <h3>Prepped the hardware</h3>
-              <p>Configured the BIOS for a clean Linux install, setting Secure Boot and switching storage to SATA AHCI, and built UEFI install media.</p>
-            </div>
-          </li>
-          <li class="card reveal">
-            <div>
-              <h3>Installed Ubuntu Server, headless</h3>
-              <p>Installed Ubuntu Server 26.04 LTS without a desktop environment and moved all administration to SSH.</p>
-            </div>
-          </li>
-          <li class="card reveal">
-            <div>
-              <h3>Networked it over Wi-Fi</h3>
-              <p>Configured wireless networking with netplan so the box could live wherever it fit, not next to the router.</p>
-            </div>
-          </li>
-          <li class="card reveal">
-            <div>
-              <h3>Deployed Immich with Docker Compose</h3>
-              <p>Brought up the application, machine-learning, PostgreSQL, and Valkey containers, then pointed the iOS app at the server and backed up 9,000+ photos.</p>
-            </div>
-          </li>
-          <li class="card reveal">
-            <div>
-              <h3>Locked down remote access</h3>
-              <p>Set up Tailscale so I can reach the server from anywhere without opening a single port on my home network.</p>
-            </div>
-          </li>
+          <li><h3>Prepped the hardware</h3><p>Set Secure Boot and switched storage to SATA AHCI in the BIOS for a clean Linux install, then built UEFI install media.</p></li>
+          <li><h3>Installed Ubuntu Server, headless</h3><p>Installed Ubuntu Server 26.04 LTS without a desktop environment and moved all administration to SSH.</p></li>
+          <li><h3>Networked it over Wi-Fi</h3><p>Configured wireless networking with netplan so the box can live wherever it fits, not next to the router.</p></li>
+          <li><h3>Deployed Immich with Docker Compose</h3><p>Brought up the application, machine-learning, PostgreSQL, and Valkey containers, then pointed the iOS app at the server and backed up 9,000+ photos.</p></li>
+          <li><h3>Locked down remote access</h3><p>Set up Tailscale so I can reach the server from anywhere without opening a single port on my home network.</p></li>
         </ol>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <div class="callout reveal">
-          <strong>Security catch: an interface exposed on a public ISP address</strong>
-          While reviewing the network setup, I found that one of the server's interfaces was reachable on a public
-          address from my ISP. I identified it and shut it off, so access only goes through the VPN. It was a good
-          reminder to check what's actually exposed instead of assuming.
+    <section class="field">
+      <div class="wrap lab">
+        <h2>The security catch</h2>
+        <p class="lede" style="color:#d9d1c2">While reviewing the network setup, I found that one of the server's interfaces was reachable on a public address from my ISP. I identified it and shut it off, so access only goes through the VPN. It was a good reminder to check what's actually exposed instead of assuming.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap two-col">
+        <div>
+          <h3>What I practiced</h3>
+          <ul><li>Linux server administration from the command line</li><li>Container orchestration with Docker Compose</li><li>VPN-based remote access with zero open ports</li><li>Auditing my own network for exposure</li></ul>
+        </div>
+        <div>
+          <h3>What's next</h3>
+          <ul><li>An automated off-site copy of the photo library</li><li>Monitoring and alerts for disk health and uptime</li><li>More self-hosted services on the same host</li></ul>
         </div>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container grid-2">
-        <article class="card reveal">
-          <h3>What I practiced</h3>
-          <ul class="bullets">
-            <li>Linux server administration from the command line</li>
-            <li>Container orchestration with Docker Compose</li>
-            <li>VPN-based zero-open-port remote access</li>
-            <li>Auditing my own network for exposure</li>
-          </ul>
-        </article>
-        <article class="card reveal">
-          <h3>What's next</h3>
-          <ul class="bullets">
-            <li>Automated off-site copy of the photo library</li>
-            <li>Monitoring and alerting for disk health and uptime</li>
-            <li>Adding more self-hosted services to the same host</li>
-          </ul>
-        </article>
+    <section>
+      <div class="wrap next-up">
+        <h2>Want to talk shop?</h2>
+        <a class="btn btn-primary" href="index.html#contact">Get in touch <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <span>© <span id="year">2026</span> Gavan Quimby</span>
-      <a href="index.html#contact">Get in touch →</a>
+    <div class="wrap">
+      <span>© <span id="year">2026</span> Gavan Quimby · Northeastern Pennsylvania</span>
+      <span class="foot-links">
+        <a href="https://www.linkedin.com/in/gavan-quimby/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/gavanquimby" target="_blank" rel="noopener">GitHub</a>
+        <a href="#main">Back to top ↑</a>
+      </span>
     </div>
   </footer>
 
-  <script src="site.js?v=2"></script>
+  <script src="site.js?v=3"></script>
 </body>
 </html>
